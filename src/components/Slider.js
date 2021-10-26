@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import slideImg1 from '../images/slider-home-img.jpeg'
+// import slideImg1 from '../images/slider-home-img.jpeg'
+import { sliderItems } from '../sampleData'
 
 const Container = styled.div`
     overflow-x: hidden;
@@ -21,6 +22,7 @@ const Arrow = styled.div`
     position: absolute;
     top: 0; bottom: 0;
     margin: auto ;
+    z-index: 2;
     left: ${props => props.direction === 'left' && '12px'};
     right: ${props => props.direction === 'right' && '12px'}; 
 `
@@ -28,7 +30,8 @@ const Wrapper = styled.div`
     height: 100%;
     display: flex;
     justify-content: center;
-    
+    transform: translateX(${props => props.slideNum * -100}vw);
+    transition: all 1s ease;
 `
 
 const Slide = styled.div`
@@ -77,50 +80,46 @@ const Button = styled.button`
 `
 
 const Slider = () => {
+    const [slideNumber, setSlideNumber] = useState(0);
+
+    const handleSlider = (direction) => {
+        if (direction === 'right') {
+            if (slideNumber < 2) {
+                setSlideNumber(slideNumber + 1);
+            } else {
+                setSlideNumber(0);
+            }
+        } else {
+            if (slideNumber > 0) {
+                setSlideNumber(slideNumber - 1);
+            } else {
+                setSlideNumber(2);
+            }
+        }
+    }
+
     return (
         <Container>
-            <Arrow direction='left'>
+            <Arrow direction='left' onClick={() => handleSlider('left')}>
                 <i className="fas fa-caret-left" style={{ fontSize: '20px' }} />
             </Arrow>
-            <Wrapper>
-                <Slide bg='#f5fafd'>
-                    <ImageContainer>
-                        <Image src={slideImg1}>
-
-                        </Image>
-                    </ImageContainer>
-                    <InfoContainer>
-                        <Title>Summer Sale</Title>
-                        <Desc>Get your favourite products at 30% discount!!</Desc>
-                        <Button>Shop Now</Button>
-                    </InfoContainer>
-                </Slide>
-                <Slide bg='#f5fafd'>
-                    <ImageContainer>
-                        <Image src={slideImg1}>
-
-                        </Image>
-                    </ImageContainer>
-                    <InfoContainer>
-                        <Title>Summer Sale</Title>
-                        <Desc>Get your favourite products at 30% discount!!</Desc>
-                        <Button>Shop Now</Button>
-                    </InfoContainer>
-                </Slide>
-                <Slide bg='#f5fafd'>
-                    <ImageContainer>
-                        <Image src={slideImg1}>
-
-                        </Image>
-                    </ImageContainer>
-                    <InfoContainer>
-                        <Title>Summer Sale</Title>
-                        <Desc>Get your favourite products at 30% discount!!</Desc>
-                        <Button>Shop Now</Button>
-                    </InfoContainer>
-                </Slide>
+            <Wrapper slideNum={slideNumber}>
+                {
+                    sliderItems.map((item) => (
+                        <Slide bg={item.bg}>
+                            <ImageContainer>
+                                <Image src={item.img} />
+                            </ImageContainer>
+                            <InfoContainer>
+                                <Title>{item.title}</Title>
+                                <Desc>{item.desc}</Desc>
+                                <Button>Shop Now</Button>
+                            </InfoContainer>
+                        </Slide>
+                    ))
+                }
             </Wrapper>
-            <Arrow direction='right'>
+            <Arrow direction='right' onClick={() => handleSlider('right')}>
                 <i className="fas fa-caret-right" style={{ fontSize: '20px' }} />
             </Arrow>
         </Container>
