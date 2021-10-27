@@ -31,7 +31,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     transform: translateX(${props => props.slideNum * -100}vw);
-    transition: all 1s ease;
+    transition: all 1s ease; 
 `
 
 const Slide = styled.div`
@@ -106,7 +106,7 @@ const Slider = () => {
             <Wrapper slideNum={slideNumber}>
                 {
                     sliderItems.map((item) => (
-                        <Slide bg={item.bg}>
+                        <Slide bg={item.bg} key={item.id}>
                             <ImageContainer>
                                 <Image src={item.img} />
                             </ImageContainer>

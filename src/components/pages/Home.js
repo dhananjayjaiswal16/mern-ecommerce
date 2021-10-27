@@ -1,5 +1,6 @@
 import React from 'react'
 import Announcement from '../Announcement';
+import Categories from '../Categories';
 import Navbar from '../Navbar'
 import Slider from '../Slider';
 
@@ -9,6 +10,7 @@ const Home = () => {
             <Announcement />
             <Navbar />
             <Slider />
+            <Categories />
         </div>
     )
 }
