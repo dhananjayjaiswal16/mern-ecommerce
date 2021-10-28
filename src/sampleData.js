@@ -71,14 +71,14 @@ export const productsData = [
     },
     {
         id: 6,
-        img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+        img: "https://media.istockphoto.com/photos/trucker-hat-or-mesh-cap-isolated-picture-id1163958328?k=20&m=1163958328&s=612x612&w=0&h=6rMHN6S1Er0lzjQmi9KTOeCC58pKcGDt9T8S3cg1-Bo=",
     },
     {
         id: 7,
-        img: "https://www.vintageindustries.nl/download_front/qympzk1762/2217_Arrow_Jacket_Forest.png",
+        img: "https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
     },
     {
         id: 8,
-        img: "https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
-    },
+        img: "https://img.freepik.com/free-photo/running-shoes-white-background_10541-635.jpg?size=626&ext=jpg",
+    }
 ]
