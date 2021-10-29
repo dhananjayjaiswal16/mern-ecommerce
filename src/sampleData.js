@@ -55,7 +55,7 @@ export const productsData = [
     },
     {
         id: 2,
-        img: "https://cdn.shopify.com/s/files/1/0101/4832/products/Angela_Natural_Tee.png?v=1606780388",
+        img: "https://img.freepik.com/free-photo/running-shoes-white-background_10541-635.jpg?size=626&ext=jpg",
     },
     {
         id: 3,
@@ -79,6 +79,6 @@ export const productsData = [
     },
     {
         id: 8,
-        img: "https://img.freepik.com/free-photo/running-shoes-white-background_10541-635.jpg?size=626&ext=jpg",
-    }
+        img: "https://cdn.shopify.com/s/files/1/0101/4832/products/Angela_Natural_Tee.png?v=1606780388",
+    },
 ]
