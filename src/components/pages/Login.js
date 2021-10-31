@@ -19,13 +19,13 @@ const Container = styled.div`
   background-size: cover;
 `
 const Wrapper = styled.div`
-    width: 20%;
+    width: 30%;
     `
 
 const Form = styled.form`
     display: flex;
     flex-wrap: wrap;
-
+    flex-direction: column;
 `
 
 const Title = styled.h2`
@@ -59,6 +59,19 @@ const Button = styled.button`
     }
 `
 
+const LinkContainer = styled.div`
+    text-align: right;
+    margin-top: 8px;
+`
+
+const Link = styled.a`
+  margin: 0px 5px;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+  width: 50%;
+`;
+
 const Login = () => {
     return (
         <>
@@ -75,6 +88,11 @@ const Login = () => {
 
                         <Button>Login</Button>
                     </Form>
+
+                    <LinkContainer>
+                        <Link side='left'>Forgot Password?</Link>
+                        <Link side='right'>Don't have an Account?</Link>
+                    </LinkContainer>
                 </Wrapper>
             </Container>
         </>
