@@ -68,12 +68,14 @@ const Details = styled.div`
     display: flex;
     flex-direction: column;
     padding: 20px;
-    justify-content: space-around;
+    justify-content: center;
 `
 
 const ProductId = styled.span``
 
-const ProductName = styled.span``
+const ProductName = styled.span`
+    margin: 12px 0;
+`
 
 const ProductColor = styled.span`
     width: 20px;
@@ -82,29 +84,52 @@ const ProductColor = styled.span`
     background-color: ${props => props.color};
 `
 
-const ProductSize = styled.span``
+const ProductSize = styled.span`
+    margin-top: 12px;
+`
 
 
 const PriceDetail = styled.div`
     flex: 1;
 `
 
-const ProductAmountContainer = styled.div``
+const ProductAmountContainer = styled.div`
+    margin: 20px 0px;
+`
 
-const ProductAmount = styled.div``
+const ProductAmount = styled.span`
+    font-size: 25px;
+    margin: 0 8px;
+    
+`
 
-const Remove = styled.div``
+const Remove = styled.span`
+    cursor: pointer;
+`
 
-const Add = styled.div``
+const Add = styled.span`
+    cursor: pointer;
+`
 
-const ProductPrice = styled.div``
+const ProductPrice = styled.div`
+    font-size: 28px;
+    font-weight: 200;
+`
 
 
 const OrderSummary = styled.div`
     flex: 1;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
+const Hr = styled.hr`
+    background-color: #eee;
+    border: none;
+    height: 1.2px;
+    margin: 20px 0;
+`
 
 const Cart = () => {
     return (
@@ -145,9 +170,36 @@ const Cart = () => {
                                     <ProductAmount>2</ProductAmount>
                                     <Add><i className="fas fa-plus" /></Add>
                                 </ProductAmountContainer>
-                                <ProductPrice>$ 30</ProductPrice>
+                                <ProductPrice>$ 49</ProductPrice>
                             </PriceDetail>
                         </Product>
+
+                        <Hr />
+
+                        <Product>
+                            <ProductDetail>
+                                <Image src='https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png' />
+                                <Details>
+                                    <ProductId>
+                                        <strong>Product ID: </strong>27148210948
+                                    </ProductId>
+                                    <ProductName>
+                                        <strong>Product: </strong>Nike Thunder shoes
+                                    </ProductName>
+                                    <ProductColor color='#F5F5DC' />
+                                    <ProductSize>M</ProductSize>
+                                </Details>
+                            </ProductDetail>
+                            <PriceDetail>
+                                <ProductAmountContainer>
+                                    <Remove><i className="fas fa-minus" /></Remove>
+                                    <ProductAmount>2</ProductAmount>
+                                    <Add><i className="fas fa-plus" /></Add>
+                                </ProductAmountContainer>
+                                <ProductPrice>$ 19</ProductPrice>
+                            </PriceDetail>
+                        </Product>
+
                     </ProductInfo>
                     <OrderSummary>
                         Order Summary
