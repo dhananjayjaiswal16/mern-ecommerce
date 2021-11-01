@@ -43,10 +43,68 @@ const TopText = styled.span`
 
     
 `
+const Bottom = styled.div`
+    display: flex;
+`
+
+const ProductInfo = styled.div`
+    flex: 3;
+`
+
+const Product = styled.div`
+    display: flex;
+`
+
+const ProductDetail = styled.div`
+    flex: 2;
+    display: flex
+`
+
+const Image = styled.img`
+    width: 250px;
+`
+
+const Details = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: space-around;
+`
+
+const ProductId = styled.span``
+
+const ProductName = styled.span``
+
+const ProductColor = styled.span`
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: ${props => props.color};
+`
+
+const ProductSize = styled.span``
 
 
+const PriceDetail = styled.div`
+    flex: 1;
+`
 
-const Bottom = styled.div``
+const ProductAmountContainer = styled.div``
+
+const ProductAmount = styled.div``
+
+const Remove = styled.div``
+
+const Add = styled.div``
+
+const ProductPrice = styled.div``
+
+
+const OrderSummary = styled.div`
+    flex: 1;
+    
+`
+
 
 const Cart = () => {
     return (
@@ -66,7 +124,34 @@ const Cart = () => {
 
                 </Top>
                 <Bottom>
-
+                    <ProductInfo>
+                        <Product>
+                            <ProductDetail>
+                                <Image src='https://img.freepik.com/free-photo/running-shoes-white-background_10541-635.jpg?size=626&ext=jpg' />
+                                <Details>
+                                    <ProductId>
+                                        <strong>Product ID: </strong>27148210948
+                                    </ProductId>
+                                    <ProductName>
+                                        <strong>Product: </strong>Nike Thunder shoes
+                                    </ProductName>
+                                    <ProductColor color='gray' />
+                                    <ProductSize>40</ProductSize>
+                                </Details>
+                            </ProductDetail>
+                            <PriceDetail>
+                                <ProductAmountContainer>
+                                    <Remove><i className="fas fa-minus" /></Remove>
+                                    <ProductAmount>2</ProductAmount>
+                                    <Add><i className="fas fa-plus" /></Add>
+                                </ProductAmountContainer>
+                                <ProductPrice>$ 30</ProductPrice>
+                            </PriceDetail>
+                        </Product>
+                    </ProductInfo>
+                    <OrderSummary>
+                        Order Summary
+                    </OrderSummary>
                 </Bottom>
             </Wrapper>
             <Footer />
