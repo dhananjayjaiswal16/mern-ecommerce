@@ -57,7 +57,7 @@ const Product = styled.div`
 
 const ProductDetail = styled.div`
     flex: 2;
-    display: flex
+    display: flex;
 `
 
 const Image = styled.img`
@@ -119,10 +119,45 @@ const ProductPrice = styled.div`
 
 const OrderSummary = styled.div`
     flex: 1;
+    border: 1px solid #eee; 
+    padding: 20px;
+    height: 50vh;
+`
+const SummaryTitle = styled.h1`
+    font-size: 22px;
+    font-weight: 500;
+    
+`
+const SummaryInfo = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    font-weight: ${props => props.total === 'total' && 500};
+    font-size: ${props => props.total === 'total' && 21}px;
+`
+
+const SummaryText = styled.span`
+    
+`
+
+const SummaryPrice = styled.span`
+`
+
+const SummaryButton = styled.button`
+    cursor: pointer;
+    font-weight: 600;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    
 `
+
+
 
 const Hr = styled.hr`
     background-color: #eee;
@@ -202,8 +237,26 @@ const Cart = () => {
 
                     </ProductInfo>
                     <OrderSummary>
-                        Order Summary
+                        <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+                        <SummaryInfo>
+                            <SummaryText>Subtotal</SummaryText>
+                            <SummaryPrice>$ 68</SummaryPrice>
+                        </SummaryInfo>
+                        <SummaryInfo>
+                            <SummaryText>Estimated Shipping</SummaryText>
+                            <SummaryPrice>$ 5</SummaryPrice>
+                        </SummaryInfo>
+                        <SummaryInfo>
+                            <SummaryText>Discount</SummaryText>
+                            <SummaryPrice>-$ 5</SummaryPrice>
+                        </SummaryInfo>
+                        <SummaryInfo total='total'>
+                            <SummaryText>Payable Amount</SummaryText>
+                            <SummaryPrice>$ 68</SummaryPrice>
+                        </SummaryInfo>
+                        <SummaryButton>Checkout<i class="fas fa-angle-double-right" style={{ marginLeft: '8px', fontSize: '16px' }} /></SummaryButton>
                     </OrderSummary>
+
                 </Bottom>
             </Wrapper>
             <Footer />

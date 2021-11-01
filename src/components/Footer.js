@@ -5,6 +5,8 @@ import styled from 'styled-components';
 const Container = styled.div`
     display: flex;
     margin-top: 15px;
+    background-color: #FFFAFA;
+    padding-top: 20px;
 `
 const Left = styled.div`
     flex: 1;
