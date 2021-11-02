@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 // import slideImg1 from '../images/slider-home-img.jpeg'
 import { sliderItems } from '../sampleData'
+import { mobile } from '../responsive';
 
 const Container = styled.div`
     overflow-x: hidden;
@@ -9,6 +10,7 @@ const Container = styled.div`
     height: calc(100vh - 88px);
     position: relative;
     display: flex ;
+    ${mobile({ paddingBottom: '10px', height: 'calc(100vh - 50px)', width: '100vw', paddingBottom: '10px' })};
 `
 
 const Arrow = styled.div`
@@ -17,7 +19,6 @@ const Arrow = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
     cursor: pointer;
     position: absolute;
     top: 0; bottom: 0;
@@ -25,6 +26,13 @@ const Arrow = styled.div`
     z-index: 2;
     left: ${props => props.direction === 'left' && '12px'};
     right: ${props => props.direction === 'right' && '12px'}; 
+    ${mobile({
+    border: 'none',
+    backgroundColor: 'white',
+    height: '30px',
+    width: '30px',
+    borderRadius: '50%'
+})}
 `
 const Wrapper = styled.div`
     height: 100%;
@@ -40,6 +48,9 @@ const Slide = styled.div`
     width: 100vw;
     height: 100%;
     background-color: ${props => props.bg};
+    ${mobile({
+    display: 'flex', flexDirection: 'column', justifyContent: 'space-between'
+})};
 `
 
 const ImageContainer = styled.div`
@@ -48,22 +59,31 @@ const ImageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    ${(mobile({
+    width: '100%', flex: '1', height: '70%'
+}))};
 `
 const Image = styled.img`
     height: 80%;
+    ${mobile({ height: '100%', width: '100vw' })}
 `
 
 const InfoContainer = styled.div`
     flex: 1;
+    ${mobile({
+    flex: '1', textAlign: 'center', marginTop: '20px', display: 'flex',
+    justifyContent: 'center', alignItems: 'center', flexDirection: 'column', height: '20%'
+})};
 `
 const Title = styled.h1`
-    font-size: 60px;
+    font-size: 30px;
 `
 const Desc = styled.p`
     margin: 50px 0px;
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 3px;
+    ${mobile({ fontSize: '12px', fontWeight: '400', margin: '20px 0px' })};
 `
 const Button = styled.button`
     padding: 10px;

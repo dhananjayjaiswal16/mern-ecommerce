@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { mobile } from '../responsive';
 
 const Container = styled.div`
+    
     ${mobile({ height: '50px' })};
 `
 const Wrapper = styled.div`
@@ -10,6 +11,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #FFFAFA;
     ${mobile({ padding: '5px 5px' })};
 `
 const Left = styled.div`
