@@ -1,14 +1,16 @@
 import React from 'react'
 import styled from 'styled-components';
+import { mobile } from '../responsive';
 
 const Container = styled.div`
-
+    ${mobile({ height: '50px' })};
 `
 const Wrapper = styled.div`
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    ${mobile({ padding: '5px 5px' })};
 `
 const Left = styled.div`
     flex: 1;
@@ -17,6 +19,7 @@ const Left = styled.div`
 `
 const Language = styled.div`
     cursor: pointer;
+    ${mobile({ display: 'none' })};
 `
 const SearchBar = styled.div`
     display: flex;
@@ -24,13 +27,16 @@ const SearchBar = styled.div`
     margin-left: 25px;
     padding: 6px;
     border: 0.5px solid #d3d3d3;
+    ${mobile({ margin: '0px', width: '65px', fontSize: '12px', padding: '3px' })};
 `
 const Input = styled.input`
     border: none;
+    width: 100%;
 `
 const Center = styled.div`
     flex: 1;
     text-align: center;
+    ${mobile({ marginLeft: '10px' })};
 `
 const Logo = styled.div`
     font-weight: 700;
@@ -41,11 +47,13 @@ const Right = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    ${mobile({ flex: '2' })};
 `
 const MenuItem = styled.div`
     cursor: pointer;
     margin-left: 40px;
     font-weight: 300;
+    ${mobile({ marginLeft: '15px' })};
 `
 const CartIcon = styled.div`
     cursor: pointer;
@@ -53,21 +61,24 @@ const CartIcon = styled.div`
     margin-left: 40px;
     padding: 5px 10px;
     border-radius: 20px;
+    ${mobile({ marginLeft: '15px' })};
+    display: flex;
 `
 
 const Navbar = () => {
     return (
         <Container>
             <Wrapper>
+
                 <Left>
                     <Language>FR</Language>
                     <SearchBar>
                         <i className="fas fa-search"></i>
-                        <Input></Input>
+                        <Input placeholder='Search'></Input>
                     </SearchBar>
                 </Left>
                 <Center>
-                    <Logo>DJ's E-commerce</Logo>
+                    <Logo>DJ.</Logo>
                 </Center>
                 <Right>
                     <MenuItem>LOGIN</MenuItem>
