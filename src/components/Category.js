@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { mobile } from '../responsive';
 
 
 const Container = styled.div`
@@ -32,6 +33,7 @@ const Image = styled.img`
         
     }
     transition: all 0.3s ease-in-out;
+    ${mobile({ height: '30vh' })};
 `
 const Title = styled.h1`
     color:white;
