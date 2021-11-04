@@ -9,7 +9,7 @@ import SingleProduct from './components/pages/SingleProduct';
 const App = () => {
   return (
     <>
-      <Register />
+      <ProductList />
     </>
   )
 }
