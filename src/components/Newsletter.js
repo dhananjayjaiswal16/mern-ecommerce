@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
+import { mobile } from '../responsive';
 
 const Container = styled.div`
   height: 60vh;
@@ -8,16 +9,19 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  ${mobile({ textAlign: 'center' })};
 `;
 const Title = styled.h1`
   font-size: 70px;
   margin-bottom: 20px;
+  ${mobile({ fontSize: '45px' })}
 `;
 
 const Description = styled.div`
   font-size: 24px;
   font-weight: 300;
   margin-bottom: 20px;
+  ${mobile({ fontSize: '18px' })}
 `;
 
 const InputContainer = styled.div`
@@ -27,6 +31,7 @@ const InputContainer = styled.div`
   display: flex;
   justify-content: space-between;
   border: 0.9px solid lightgray;
+  ${mobile({ width: '75%' })};
 `;
 
 const Input = styled.input`
@@ -49,18 +54,18 @@ const Button = styled.button`
 `
 
 const Newsletter = () => {
-    return (
-        <Container>
-            <Title>Newsletter</Title>
-            <Description>Get timely updates from your favorite products.</Description>
-            <InputContainer>
-                <Input placeholder="Your email" />
-                <Button>
-                    <i class="fas fa-paper-plane" />
-                </Button>
-            </InputContainer>
-        </Container>
-    );
+  return (
+    <Container>
+      <Title>Newsletter</Title>
+      <Description>Get timely updates from your favorite products.</Description>
+      <InputContainer>
+        <Input placeholder="Your email" />
+        <Button>
+          <i class="fas fa-paper-plane" />
+        </Button>
+      </InputContainer>
+    </Container>
+  );
 };
 
 export default Newsletter;
