@@ -3,11 +3,13 @@ import styled from 'styled-components'
 import Announcement from '../Announcement'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
+import { mobile } from '../../responsive'
 
 const Container = styled.div``
 
 const Wrapper = styled.div`
     padding: 20px;
+    margin-bottom: 25px;
 `
 
 const Title = styled.h1`
@@ -34,7 +36,7 @@ const TopButton = styled.button`
     align-items: center;
 `
 const TopTexts = styled.div`
-
+    ${mobile({ display: 'none' })};
 `
 const TopText = styled.span`
     cursor: pointer;
@@ -45,6 +47,7 @@ const TopText = styled.span`
 `
 const Bottom = styled.div`
     display: flex;
+    ${mobile({ flexDirection: 'column' })};
 `
 
 const ProductInfo = styled.div`
@@ -53,15 +56,19 @@ const ProductInfo = styled.div`
 
 const Product = styled.div`
     display: flex;
+
+    ${mobile({ flexDirection: 'column' })};
 `
 
 const ProductDetail = styled.div`
     flex: 2;
     display: flex;
+    ${mobile({ flexDirection: 'column', alignItems: 'center' })};
 `
 
 const Image = styled.img`
-    width: 250px;
+    width: 300px;
+    
 `
 
 const Details = styled.div`
@@ -91,15 +98,22 @@ const ProductSize = styled.span`
 
 const PriceDetail = styled.div`
     flex: 1;
+    ${mobile({ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' })};
 `
 
 const ProductAmountContainer = styled.div`
     margin: 20px 0px;
+    ${mobile({ display: 'flex', alignItems: 'center', justifyContent: 'center' })};
 `
 
 const ProductAmount = styled.span`
     font-size: 25px;
     margin: 0 8px;
+    border: 1px solid #00a7a7;
+    padding: 4px 8px;
+    border-radius: 10px;
+    margin: 0 7px;
+    ${mobile({ margin: '0px 13px' })};
     
 `
 
@@ -122,6 +136,7 @@ const OrderSummary = styled.div`
     border: 1px solid #eee; 
     padding: 20px;
     height: 50vh;
+    ${mobile({ marginTop: '50px' })};
 `
 const SummaryTitle = styled.h1`
     font-size: 22px;
@@ -234,6 +249,8 @@ const Cart = () => {
                                 <ProductPrice>$ 19</ProductPrice>
                             </PriceDetail>
                         </Product>
+
+
 
                     </ProductInfo>
                     <OrderSummary>
