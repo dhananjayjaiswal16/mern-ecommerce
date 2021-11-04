@@ -5,15 +5,16 @@ import { mobile } from '../responsive'
 const Container = styled.div`
     display: flex;
     margin-top: 15px;
-    background-color: #FFFAFA;
+    background-color: #fff;
     padding-top: 20px;
-    ${mobile({ width: '100vw' })}
+    ${mobile({ width: '100%', flexDirection: 'column', padding: '0px 10px' })};
 `
 const Left = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
     padding: 0 25px;
+    ${mobile({ padding: '0px' })}
 `
 const Logo = styled.h1``
 
@@ -44,10 +45,12 @@ const Icon = styled.div`
 
 const Center = styled.div`
     flex: 1;
+    ${mobile({ marginTop: '20px' })};
 
 `
 const Title = styled.h3`
     margin-bottom: 30px;
+    ${mobile({ marginBottom: '14px' })}
 `
 
 const List = styled.ul`
@@ -65,6 +68,7 @@ const ListItem = styled.li`
 
 const Right = styled.div`
     flex: 1;
+    ${mobile({ marginTop: '20px' })};
 `
 const Contact = styled.div`
     margin-bottom: 20px;

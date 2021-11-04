@@ -65,7 +65,7 @@ const ImageContainer = styled.div`
 `
 const Image = styled.img`
     height: 80%;
-    ${mobile({ height: '100%', width: '100vw' })}
+    ${mobile({ height: '100%', width: '100%' })}
 `
 
 const InfoContainer = styled.div`
