@@ -9,7 +9,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  ${mobile({ textAlign: 'center' })};
+  ${mobile({ textAlign: 'center', height: '45vh' })};
 `;
 const Title = styled.h1`
   font-size: 70px;

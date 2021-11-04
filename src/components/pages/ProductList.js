@@ -12,8 +12,7 @@ const Container = styled.div`
 `
 const FilterWrapper = styled.div`
     display: flex;
-    justify-content: space-between;
-    ${mobile({ width: '100%' })}
+    justify-content: space-between
 `
 const Filter = styled.div`
     margin: 20px;

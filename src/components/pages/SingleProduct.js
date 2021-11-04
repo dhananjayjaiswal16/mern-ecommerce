@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { mobile } from '../../responsive'
 
 import Announcement from '../Announcement'
 import Footer from '../Footer'
@@ -14,13 +15,17 @@ const ProductWrapper = styled.div`
     display: flex;
     margin: 50px 0;
     align-items: center;
+    ${mobile({ flexDirection: 'column' })};
 `
 
 const ImageContainer = styled.div`
     flex: 1;
 `
 
-const Image = styled.img``
+const Image = styled.img`
+    object-fit: cover;
+    ${mobile({ width: '100%', marginBottom: '30px', height: '40vh' })};
+`
 
 const InfoContainer = styled.div`
     flex: 1;
@@ -46,6 +51,7 @@ const FilterContainer = styled.div`
     margin: 25px 0;
     justify-content: space-between;
     width: 55%;
+    ${mobile({ width: '100%' })}
 `
 
 const Filter = styled.div`
@@ -66,6 +72,7 @@ const FilterColor = styled.div`
     border-radius: 50%;
     background-color: ${props => props.color};
     margin: 0 6px;
+    ${mobile({ margin: '0px 3px' })}
 `
 
 const FilterSize = styled.select`
@@ -81,6 +88,7 @@ const AddContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    ${mobile({ width: '100%' })};
 `
 
 const QuantityContainer = styled.div`
