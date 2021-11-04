@@ -21,7 +21,7 @@ const Container = styled.div`
 `
 const Wrapper = styled.div`
     width: 30%;
-    ${mobile({ width: '86%' })};
+    ${mobile({ width: '82%' })};
     `
 
 const Form = styled.form`
