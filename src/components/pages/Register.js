@@ -38,7 +38,7 @@ const Title = styled.h2`
 
 const Input = styled.input`
     flex: 1;
-    margin: 20px 0px 0px;
+    margin: 20px 3px 0px;
     padding: 8px;
 `
 
