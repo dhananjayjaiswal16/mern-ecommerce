@@ -12,8 +12,9 @@ const Container = styled.div`
     flex-wrap: wrap;
 `
 
-const Products = ({ cat, filter, sort }) => {
+const Products = ({ cat, filters, sort }) => {
     const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
 
 
 
@@ -30,10 +31,31 @@ const Products = ({ cat, filter, sort }) => {
             }
         }
         getProducts();
-    }, [cat])
+    }, [cat]);
+
+
+
+
+    useEffect(() => {
+        if (cat) {
+            setFilteredProducts(
+                products.filter((item) =>
+                    Object.entries(filters).every(([key, value]) => {
+                        //console.log(key, value);
+                        return item[key].includes(value)
+                    }
+
+                    )
+                )
+            );
+        }
+    }, [products, cat, filters]);
+
+    // console.log(products);
+    //console.log(filteredProducts);
     return (
         <Container>
-            {productsData.map((product) => (
+            {filteredProducts.map((product) => (
                 <Product product={product} key={product.id} />
             ))}
         </Container>

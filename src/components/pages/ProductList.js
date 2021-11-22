@@ -41,12 +41,12 @@ const ProductList = () => {
     const location = useLocation();
     const cat = location.pathname.split('/')[2];
 
-    const [filter, setFilter] = useState({});
+    const [filters, setFilters] = useState({});
     const [sort, setSort] = useState('newest');
 
     const handleFilter = (e) => {
-        setFilter({
-            ...filter,
+        setFilters({
+            ...filters,
             [e.target.name]: e.target.value
         })
     }
@@ -59,18 +59,18 @@ const ProductList = () => {
                 <Filter>
                     <Text>Filter Products</Text>
                     <Select name='color' onChange={handleFilter}>
-                        <Option selected disabled>
+                        <Option defaultValue disabled>
                             Color
                         </Option>
-                        <Option>White</Option>
-                        <Option>Black</Option>
-                        <Option>Red</Option>
-                        <Option>Blue</Option>
-                        <Option>Yellow</Option>
-                        <Option>Green</Option>
+                        <Option>white</Option>
+                        <Option>black</Option>
+                        <Option>red</Option>
+                        <Option>blue</Option>
+                        <Option>yellow</Option>
+                        <Option>green</Option>
                     </Select>
                     <Select name='size' onChange={handleFilter}>
-                        <Option selected disabled>
+                        <Option defaultValue disabled>
                             Size
                         </Option>
                         <Option>XS</Option>
@@ -89,7 +89,7 @@ const ProductList = () => {
                     </Select>
                 </Filter>
             </FilterWrapper>
-            <Products cat={cat} filter={filter} sort={sort} />
+            <Products cat={cat} filters={filters} sort={sort} />
             <Newsletter />
             <Footer />
         </Container>
