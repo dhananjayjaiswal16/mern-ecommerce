@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
 import { mobile } from '../../responsive'
 
@@ -6,6 +7,10 @@ import Announcement from '../Announcement'
 import Footer from '../Footer'
 import Navbar from '../Navbar'
 import Newsletter from '../Newsletter'
+
+import { publicRequest, userRequest } from '../../requestMethod';
+
+
 
 const Container = styled.div`
     
@@ -20,15 +25,19 @@ const ProductWrapper = styled.div`
 
 const ImageContainer = styled.div`
     flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const Image = styled.img`
     object-fit: cover;
-    ${mobile({ width: '100%', marginBottom: '30px', height: '40vh' })};
+    height: 50vh;
+    ${mobile({ width: '40%', marginBottom: '30px', height: '40vh' })};
 `
 
 const InfoContainer = styled.div`
-    flex: 1;
+    flex: 2;
     padding: 0 50px;
     ${mobile({ padding: '0 20px' })};
     
@@ -129,6 +138,30 @@ const Button = styled.button`
 
 
 const SingleProduct = () => {
+
+    const location = useLocation();
+    const id = location.pathname.split('/')[2];
+
+
+    const [product, setProduct] = useState(null);
+    const [quantity, setQuantity] = useState(1);
+    const [color, setColor] = useState(null);
+    const [size, setSize] = useState(null);
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const res = await publicRequest.get(`/product/find/${id}`)
+                setProduct(res.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getProduct();
+    }, [id]);
+
+    // console.log(product);
+    // console.log(color, size);
     return (
         <Container>
             <Announcement />
@@ -136,37 +169,40 @@ const SingleProduct = () => {
 
             <ProductWrapper>
                 <ImageContainer>
-                    <Image src='https://img.freepik.com/free-photo/running-shoes-white-background_10541-635.jpg?size=626&ext=jpg' />
+                    <Image src={product?.img} />
                 </ImageContainer>
                 <InfoContainer>
-                    <Title>Product Title</Title>
-                    <Description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Description>
-                    <Price>100$</Price>
+                    <Title>{product?.title}</Title>
+                    <Description>{product?.desc}</Description>
+                    <Price>${product?.price}</Price>
                     <FilterContainer>
                         {/* For Color */}
                         <Filter>
                             <FilterTitle>Colors</FilterTitle>
-                            <FilterColor color="black" />
-                            <FilterColor color="darkblue" />
-                            <FilterColor color="gray" />
+                            {product?.color?.map((colour) =>
+                                <FilterColor color={colour} key={colour}
+                                    onClick={() => setColor(colour)} />
+                            )}
                         </Filter>
                         {/* For size */}
                         <Filter>
                             <FilterTitle>Size</FilterTitle>
-                            <FilterSize>
-                                <FilterSizeOption>XS</FilterSizeOption>
-                                <FilterSizeOption>S</FilterSizeOption>
-                                <FilterSizeOption>M</FilterSizeOption>
-                                <FilterSizeOption>L</FilterSizeOption>
-                                <FilterSizeOption>XL</FilterSizeOption>
+                            <FilterSize onChange={(e) => setSize(e.target.value)}>
+                                {product?.size?.map((size) =>
+                                    <FilterSizeOption key={size}>
+                                        {size}
+                                    </FilterSizeOption>
+
+                                )}
+
                             </FilterSize>
                         </Filter>
                     </FilterContainer>
                     <AddContainer>
                         <QuantityContainer>
-                            <Remove><i className="fas fa-minus" /></Remove>
-                            <Quantity>3</Quantity>
-                            <Add><i className="fas fa-plus" /></Add>
+                            <Remove onClick={() => quantity > 1 && setQuantity(quantity - 1)}><i className="fas fa-minus" /></Remove>
+                            <Quantity>{quantity}</Quantity>
+                            <Add onClick={() => setQuantity(quantity + 1)}><i className="fas fa-plus" /></Add>
                         </QuantityContainer>
 
                         <Button>Add to Cart</Button>
@@ -178,6 +214,9 @@ const SingleProduct = () => {
             <Footer />
         </Container>
     )
+
+
 }
+
 
 export default SingleProduct;

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const InfoContainer = styled.div`
   opacity: 0;
@@ -59,16 +60,16 @@ const Icon = styled.div`
   }
 `
 const Product = ({ product }) => {
-    return (
-        <Container>
-            <Image src={product.img} />
-            <InfoContainer>
-                <Icon><i className="fas fa-shopping-cart" /></Icon>
-                <Icon><i className="fas fa-search" /></Icon>
-                <Icon><i className="fas fa-heart" /></Icon>
-            </InfoContainer>
-        </Container>
-    )
+  return (
+    <Container>
+      <Image src={product.img} />
+      <InfoContainer>
+        <Icon><i className="fas fa-shopping-cart" /></Icon>
+        <Icon><Link style={{ textDecoration: 'none' }} to={`/product/${product._id}`}><i className="fas fa-search" /></Link></Icon>
+        <Icon><i className="fas fa-heart" /></Icon>
+      </InfoContainer>
+    </Container>
+  )
 }
 
 export default Product;
