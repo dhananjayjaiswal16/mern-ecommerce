@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { mobile } from '../responsive';
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
     
@@ -97,12 +98,18 @@ const Navbar = () => {
                     <Logo>DJ.</Logo>
                 </Center>
                 <Right>
-                    <MenuItem>LOGIN</MenuItem>
-                    <MenuItem>REGISTER</MenuItem>
-                    <CartIcon>
-                        <Quantity>{quantity}</Quantity>
-                        <i className="fas fa-shopping-cart" style={{ color: '#fff' }}></i>
-                    </CartIcon>
+                    <Link to='/login'>
+                        <MenuItem>LOGIN</MenuItem>
+                    </Link>
+                    <Link to='/register'>
+                        <MenuItem>REGISTER</MenuItem>
+                    </Link>
+                    <Link to='/cart'>
+                        <CartIcon>
+                            <Quantity>{quantity}</Quantity>
+                            <i className="fas fa-shopping-cart" style={{ color: '#fff' }}></i>
+                        </CartIcon>
+                    </Link>
                 </Right>
             </Wrapper>
         </Container>

@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import Announcement from '../components/Announcement'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { mobile } from '../responsive'
+import { mobile } from '../responsive';
+import { useSelector } from 'react-redux'
+
 
 const Container = styled.div``
 
@@ -182,6 +184,10 @@ const Hr = styled.hr`
 `
 
 const Cart = () => {
+    const cart = useSelector(state => state.cartSlice);
+
+
+
     return (
         <Container>
             <Announcement />
@@ -200,55 +206,30 @@ const Cart = () => {
                 </Top>
                 <Bottom>
                     <ProductInfo>
-                        <Product>
+                        {cart.products.map((product) => <Product>
                             <ProductDetail>
-                                <Image src='https://img.freepik.com/free-photo/running-shoes-white-background_10541-635.jpg?size=626&ext=jpg' />
+                                <Image src={product.img} />
                                 <Details>
                                     <ProductId>
-                                        <strong>Product ID: </strong>27148210948
+                                        <strong>Product ID: </strong>{product._id}
                                     </ProductId>
                                     <ProductName>
-                                        <strong>Product: </strong>Nike Thunder shoes
+                                        <strong>Product: </strong>{product.title}
                                     </ProductName>
-                                    <ProductColor color='gray' />
-                                    <ProductSize>40</ProductSize>
+                                    <ProductColor color={product.color} />
+                                    <ProductSize>{product.size}</ProductSize>
                                 </Details>
                             </ProductDetail>
                             <PriceDetail>
                                 <ProductAmountContainer>
                                     <Remove><i className="fas fa-minus" /></Remove>
-                                    <ProductAmount>2</ProductAmount>
+                                    <ProductAmount>{product.quantity}</ProductAmount>
                                     <Add><i className="fas fa-plus" /></Add>
                                 </ProductAmountContainer>
-                                <ProductPrice>$ 49</ProductPrice>
+                                <ProductPrice>$ {product.price * product.quantity}</ProductPrice>
                             </PriceDetail>
-                        </Product>
+                        </Product>)}
 
-                        <Hr />
-
-                        <Product>
-                            <ProductDetail>
-                                <Image src='https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png' />
-                                <Details>
-                                    <ProductId>
-                                        <strong>Product ID: </strong>27148210948
-                                    </ProductId>
-                                    <ProductName>
-                                        <strong>Product: </strong>Nike Thunder shoes
-                                    </ProductName>
-                                    <ProductColor color='#F5F5DC' />
-                                    <ProductSize>M</ProductSize>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetail>
-                                <ProductAmountContainer>
-                                    <Remove><i className="fas fa-minus" /></Remove>
-                                    <ProductAmount>2</ProductAmount>
-                                    <Add><i className="fas fa-plus" /></Add>
-                                </ProductAmountContainer>
-                                <ProductPrice>$ 19</ProductPrice>
-                            </PriceDetail>
-                        </Product>
 
 
 
@@ -257,7 +238,7 @@ const Cart = () => {
                         <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                         <SummaryInfo>
                             <SummaryText>Subtotal</SummaryText>
-                            <SummaryPrice>$ 68</SummaryPrice>
+                            <SummaryPrice>$ {cart.total}</SummaryPrice>
                         </SummaryInfo>
                         <SummaryInfo>
                             <SummaryText>Estimated Shipping</SummaryText>
@@ -269,7 +250,7 @@ const Cart = () => {
                         </SummaryInfo>
                         <SummaryInfo total='total'>
                             <SummaryText>Payable Amount</SummaryText>
-                            <SummaryPrice>$ 68</SummaryPrice>
+                            <SummaryPrice>$ {cart.total}</SummaryPrice>
                         </SummaryInfo>
                         <SummaryButton>Checkout<i class="fas fa-angle-double-right" style={{ marginLeft: '8px', fontSize: '16px' }} /></SummaryButton>
                     </OrderSummary>

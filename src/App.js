@@ -11,7 +11,7 @@ import ProductList from './pages/ProductList';
 import SingleProduct from './pages/SingleProduct';
 
 const App = () => {
-  const user = true;
+  const user = false;
 
   return (
     <Router>
