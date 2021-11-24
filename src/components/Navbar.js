@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { mobile } from '../responsive';
+import { useSelector } from 'react-redux'
 
 const Container = styled.div`
     
@@ -59,15 +60,28 @@ const MenuItem = styled.div`
 `
 const CartIcon = styled.div`
     cursor: pointer;
-    background-color: #000;
+    background-color: #00b5b5;
     margin-left: 40px;
     padding: 5px 10px;
     border-radius: 20px;
     ${mobile({ marginLeft: '15px' })};
     display: flex;
+    transition: .3s ease-in-out;
+    &:hover{
+        background-color: #006b6b;
+        transform: scale(1.08);
+        
+    }
+`
+const Quantity = styled.span`
+    color: #fff;
+    margin-right: 5px;
 `
 
 const Navbar = () => {
+    const { quantity } = useSelector(state => state.cartSlice)
+    // console.log(quantity);
+
     return (
         <Container>
             <Wrapper>
@@ -86,7 +100,7 @@ const Navbar = () => {
                     <MenuItem>LOGIN</MenuItem>
                     <MenuItem>REGISTER</MenuItem>
                     <CartIcon>
-                        <span style={{ marginRight: '5px', color: '#fff' }}>{5}</span>
+                        <Quantity>{quantity}</Quantity>
                         <i className="fas fa-shopping-cart" style={{ color: '#fff' }}></i>
                     </CartIcon>
                 </Right>

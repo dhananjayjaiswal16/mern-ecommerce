@@ -9,6 +9,8 @@ import Navbar from '../components/Navbar'
 import Newsletter from '../components/Newsletter'
 
 import { publicRequest, userRequest } from '../requestMethod';
+import { addProduct } from '../redux/cartSlice';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -148,6 +150,8 @@ const SingleProduct = () => {
     const [color, setColor] = useState(null);
     const [size, setSize] = useState(null);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
         const getProduct = async () => {
             try {
@@ -161,7 +165,14 @@ const SingleProduct = () => {
     }, [id]);
 
     const handleClick = () => {
-
+        dispatch(
+            addProduct({
+                ...product,
+                quantity,
+                color,
+                size
+            })
+        )
     }
 
 
