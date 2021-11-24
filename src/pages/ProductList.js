@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
-import Announcement from '../Announcement';
-import Navbar from '../Navbar';
-import Products from '../Products';
-import Newsletter from '../Newsletter';
-import Footer from '../Footer';
-import { mobile } from '../../responsive';
+import Announcement from '../components/Announcement';
+import Navbar from '../components/Navbar';
+import Products from '../components/Products';
+import Newsletter from '../components/Newsletter';
+import Footer from '../components/Footer';
+import { mobile } from '../responsive';
 import { useLocation } from 'react-router';
 
 const Container = styled.div`

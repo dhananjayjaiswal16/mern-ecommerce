@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import Announcement from '../Announcement'
-import Navbar from '../Navbar'
-import Footer from '../Footer'
-import { mobile } from '../../responsive'
+import Announcement from '../components/Announcement'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import { mobile } from '../responsive'
 
 const Container = styled.div``
 

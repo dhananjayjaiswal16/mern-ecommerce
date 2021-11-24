@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
-import { mobile } from '../../responsive'
+import { mobile } from '../responsive'
 
-import Announcement from '../Announcement'
-import Footer from '../Footer'
-import Navbar from '../Navbar'
-import Newsletter from '../Newsletter'
+import Announcement from '../components/Announcement'
+import Footer from '../components/Footer'
+import Navbar from '../components/Navbar'
+import Newsletter from '../components/Newsletter'
 
-import { publicRequest, userRequest } from '../../requestMethod';
+import { publicRequest, userRequest } from '../requestMethod';
 
 
 
@@ -160,6 +160,12 @@ const SingleProduct = () => {
         getProduct();
     }, [id]);
 
+    const handleClick = () => {
+
+    }
+
+
+
     // console.log(product);
     // console.log(color, size);
     return (
@@ -205,7 +211,7 @@ const SingleProduct = () => {
                             <Add onClick={() => setQuantity(quantity + 1)}><i className="fas fa-plus" /></Add>
                         </QuantityContainer>
 
-                        <Button>Add to Cart</Button>
+                        <Button onClick={handleClick}>Add to Cart</Button>
                     </AddContainer>
                 </InfoContainer>
             </ProductWrapper>

@@ -3,12 +3,12 @@ import React from 'react'
 import { Link, Route, BrowserRouter as Router, Routes, Navigate } from 'react-router-dom'
 
 
-import Cart from './components/pages/Cart';
-import Login from './components/pages/Login';
-import Register from './components/pages/Register';
-import Home from './components/pages/Home'
-import ProductList from './components/pages/ProductList';
-import SingleProduct from './components/pages/SingleProduct';
+import Cart from './pages/Cart';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Home from './pages/Home'
+import ProductList from './pages/ProductList';
+import SingleProduct from './pages/SingleProduct';
 
 const App = () => {
   const user = true;
