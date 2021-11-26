@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Announcement from '../components/Announcement'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { mobile } from '../responsive';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+
+import StripeCheckout from 'react-stripe-checkout';
+import { publicRequest, userRequest } from '../requestMethod'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
+
+
+
+
+const stripekey = process.env.REACT_APP_STRIPE_KEY;
+
 
 
 const Container = styled.div``
@@ -185,7 +196,47 @@ const Hr = styled.hr`
 
 const Cart = () => {
     const cart = useSelector(state => state.cartSlice);
+    const [stripeToken, setStripeToken] = useState(null);
+    const navigate = useNavigate();
 
+    const onToken = (token) => {
+        setStripeToken(token);
+    }
+
+
+    // useEffect(() => {
+    //     const serverReq = async () => {
+    //         try {
+    //             const res = await userRequest.post('/checkout/payment', {
+    //                 tokenId: stripeToken.id,
+    //                 amount: 3000,
+    //             })
+    //             console.log("res.data", res.data);
+    //             navigate('/success', { data: res.data });
+    //         } catch (error) {
+    //             console.error("axios.post()", error);
+    //         }
+    //         stripeToken && serverReq();
+    //     }
+    // }, [stripeToken, navigate])
+
+
+    useEffect(() => {
+        const serverRequest = async () => {
+            try {
+                const response = await publicRequest.post('/checkout/payment', {
+                    tokenId: stripeToken.id,
+                    amount: 1000000,
+                });
+                console.log("response.data", response.data);
+                navigate('/success');
+            } catch (error) {
+                console.error("in axios.post()", error);
+            }
+        }
+        stripeToken && serverRequest();
+
+    }, [stripeToken, navigate]);
 
 
     return (
@@ -252,7 +303,18 @@ const Cart = () => {
                             <SummaryText>Payable Amount</SummaryText>
                             <SummaryPrice>$ {cart.total}</SummaryPrice>
                         </SummaryInfo>
-                        <SummaryButton>Checkout<i class="fas fa-angle-double-right" style={{ marginLeft: '8px', fontSize: '16px' }} /></SummaryButton>
+
+                        <StripeCheckout name='DJ store'
+                            image='https://i.pinimg.com/originals/54/ba/a5/54baa52c0984d2706589463feafd60ff.png'
+                            description="Your order total"
+                            billingAddress
+                            shippingAddress
+                            amount={cart.total * 100}
+                            stripeKey={stripekey}
+                            token={onToken}
+                        >
+                            <SummaryButton>Checkout<i class="fas fa-angle-double-right" style={{ marginLeft: '8px', fontSize: '16px' }} /></SummaryButton>
+                        </StripeCheckout>
                     </OrderSummary>
 
                 </Bottom>

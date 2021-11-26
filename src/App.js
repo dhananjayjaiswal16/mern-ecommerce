@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import Home from './pages/Home'
 import ProductList from './pages/ProductList';
 import SingleProduct from './pages/SingleProduct';
+import SuccessPayment from './pages/SuccessPayment';
 
 const App = () => {
   const user = false;
@@ -23,6 +24,7 @@ const App = () => {
         <Route exact path='/products/:category' element={<ProductList />} />
         <Route exact path='/product/:id' element={<SingleProduct />} />
         <Route exact path='/cart' element={<Cart />} />
+        <Route exact path='/success' element={<SuccessPayment />} />
       </Routes>
     </Router>
   )
