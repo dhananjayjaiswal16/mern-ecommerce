@@ -61,7 +61,7 @@ const Newsletter = () => {
       <InputContainer>
         <Input placeholder="Your email" />
         <Button>
-          <i class="fas fa-paper-plane" />
+          <i className="fas fa-paper-plane" />
         </Button>
       </InputContainer>
     </Container>

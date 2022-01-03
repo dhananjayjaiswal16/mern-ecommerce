@@ -57,6 +57,7 @@ const MenuItem = styled.div`
     cursor: pointer;
     margin-left: 40px;
     font-weight: 300;
+    text-decoration: none;
     ${mobile({ marginLeft: '15px' })};
 `
 const CartIcon = styled.div`
@@ -80,40 +81,40 @@ const Quantity = styled.span`
 `
 
 const Navbar = () => {
-    const { quantity } = useSelector(state => state.cartSlice)
-    // console.log(quantity);
+  const { quantity } = useSelector(state => state.cartSlice)
+  // console.log(quantity);
 
-    return (
-        <Container>
-            <Wrapper>
+  return (
+    <Container>
+      <Wrapper>
 
-                <Left>
-                    <Language>FR</Language>
-                    <SearchBar>
-                        <i className="fas fa-search"></i>
-                        <Input placeholder='Search'></Input>
-                    </SearchBar>
-                </Left>
-                <Center>
-                    <Logo>DJ.</Logo>
-                </Center>
-                <Right>
-                    <Link to='/login'>
-                        <MenuItem>LOGIN</MenuItem>
-                    </Link>
-                    <Link to='/register'>
-                        <MenuItem>REGISTER</MenuItem>
-                    </Link>
-                    <Link to='/cart'>
-                        <CartIcon>
-                            <Quantity>{quantity}</Quantity>
-                            <i className="fas fa-shopping-cart" style={{ color: '#fff' }}></i>
-                        </CartIcon>
-                    </Link>
-                </Right>
-            </Wrapper>
-        </Container>
-    )
+        <Left>
+          <Language>FR</Language>
+          <SearchBar>
+            <i className="fas fa-search"></i>
+            <Input placeholder='Search'></Input>
+          </SearchBar>
+        </Left>
+        <Center>
+          <Logo>DJ.</Logo>
+        </Center>
+        <Right>
+          <Link to='/login' style={{ textDecoration: 'none', color: 'inherit' }}>
+            <MenuItem>LOGIN</MenuItem>
+          </Link>
+          <Link to='/register' style={{ textDecoration: 'none', color: 'inherit' }}>
+            <MenuItem>REGISTER</MenuItem>
+          </Link>
+          <Link to='/cart' style={{ textDecoration: 'none', color: 'inherit' }}>
+            <CartIcon>
+              <Quantity>{quantity}</Quantity>
+              <i className="fas fa-shopping-cart" style={{ color: '#fff' }}></i>
+            </CartIcon>
+          </Link>
+        </Right>
+      </Wrapper>
+    </Container>
+  )
 }
 
 export default Navbar;

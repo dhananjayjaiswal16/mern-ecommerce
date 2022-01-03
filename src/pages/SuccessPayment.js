@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { userRequest } from '../requestMethod';
 
-const Success = () => {
+const Success = (props) => {
   const location = useLocation();
   //in Cart.jsx I sent data and cart. Please check that page for the changes.(in video it's only data)
   const data = location?.state?.stripeData;
-  const cart = location?.state?.cart;
+  const cart = location?.state?.products;
   console.log("data in success", data);
-  console.log("data in success", cart);
+  console.log("cart in success", cart);
   const currentUser = useSelector((state) => state?.user?.currentUser);
   const [orderId, setOrderId] = useState(null);
 

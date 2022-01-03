@@ -211,11 +211,12 @@ const Cart = () => {
           tokenId: stripeToken.id,
           amount: 1000000,
         });
-        console.log("response.data", response.data);
-        navigate('/success', {
-          stripeData: response.data,
-          products: cart,
-        });
+        console.log("response.data", response.data, "cart", cart);
+        navigate('/success', { state: { stripeData: response.data, products: cart } });
+        // navigate('/success', {
+        //   stripeData: response.data,
+        //   products: cart,
+        // });
       } catch (error) {
         console.error("in axios.post()", error);
       }
@@ -293,7 +294,7 @@ const Cart = () => {
               stripeKey={stripekey}
               token={onToken}
             >
-              <SummaryButton>Checkout<i class="fas fa-angle-double-right" style={{ marginLeft: '8px', fontSize: '16px' }} /></SummaryButton>
+              <SummaryButton>Checkout<i className="fas fa-angle-double-right" style={{ marginLeft: '8px', fontSize: '16px' }} /></SummaryButton>
             </StripeCheckout>
           </OrderSummary>
 
