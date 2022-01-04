@@ -1,9 +1,10 @@
-import React from 'react'
-
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import { mobile } from '../responsive';
 import Announcement from '../components/Announcement';
 import Navbar from '../components/Navbar';
+import { login } from '../redux/services/api';
+import { useDispatch } from 'react-redux';
 
 const Container = styled.div`
     height: calc(100vh - 88px);
@@ -76,30 +77,35 @@ const Link = styled.a`
 `;
 
 const Login = () => {
-    return (
-        <>
-            <Announcement />
-            <Navbar />
-            <Container>
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const handleClick = (e) => {
+    e.preventDefault();
+    login(dispatch, { userName, password });
+  }
+  return (
+    <>
+      <Announcement />
+      <Navbar />
+      <Container>
+        <Wrapper>
+          <Title>Login to your account</Title>
+          <Form>
+            <Input placeholder='Email' onChange={(e) => setUserName(e.target.value)} />
+            <Input placeholder='Password' onChange={(e) => setPassword(e.target.value)} type="password" />
 
+            <Button onClick={handleClick}>Login</Button>
+          </Form>
 
-                <Wrapper>
-                    <Title>Login to your account</Title>
-                    <Form>
-                        <Input placeholder='Email' />
-                        <Input placeholder='Password' />
-
-                        <Button>Login</Button>
-                    </Form>
-
-                    <LinkContainer>
-                        <Link side='left'>Forgot Password?</Link>
-                        <Link side='right'>Don't have an Account?</Link>
-                    </LinkContainer>
-                </Wrapper>
-            </Container>
-        </>
-    )
+          <LinkContainer>
+            <Link side='left'>Forgot Password?</Link>
+            <Link side='right'>Don't have an Account?</Link>
+          </LinkContainer>
+        </Wrapper>
+      </Container>
+    </>
+  )
 }
 
 export default Login;
