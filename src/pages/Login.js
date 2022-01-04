@@ -4,7 +4,7 @@ import { mobile } from '../responsive';
 import Announcement from '../components/Announcement';
 import Navbar from '../components/Navbar';
 import { login } from '../redux/services/api';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Container = styled.div`
     height: calc(100vh - 88px);
@@ -56,6 +56,9 @@ const Button = styled.button`
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     border-radius: 10px;
+    &:disabled{
+      cursor: not-allowed;
+    }
     &:hover{
         background-color: teal;
         color: #fff;
@@ -76,13 +79,20 @@ const Link = styled.a`
   width: 50%;
 `;
 
+const ErrorMsg = styled.div`
+  color: red;
+  margin-top: 13px;
+  width: 210px;
+`
+
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const { isFetching, error } = useSelector((state) => state.userSlice);
   const handleClick = (e) => {
     e.preventDefault();
-    login(dispatch, { username, password });
+    login(dispatch, { userName, password });
   }
   return (
     <>
@@ -91,11 +101,12 @@ const Login = () => {
       <Container>
         <Wrapper>
           <Title>Login to your account</Title>
+          {error && <ErrorMsg>Something went Wrong!!</ErrorMsg>}
           <Form>
-            <Input placeholder='Email' onChange={(e) => setUsername(e.target.value)} />
-            <Input placeholder='Password' onChange={(e) => setPassword(e.target.value)} type="password" />
+            <Input placeholder='Email' onChange={(e) => setUserName(e.target.value)} />
+            <Input placeholder='Password' type='password' onChange={(e) => setPassword(e.target.value)} />
 
-            <Button onClick={handleClick}>Login</Button>
+            <Button disabled={isFetching} onClick={handleClick}>Login</Button>
           </Form>
 
           <LinkContainer>
