@@ -77,12 +77,12 @@ const Link = styled.a`
 `;
 
 const Login = () => {
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const handleClick = (e) => {
     e.preventDefault();
-    login(dispatch, { userName, password });
+    login(dispatch, { username, password });
   }
   return (
     <>
@@ -92,7 +92,7 @@ const Login = () => {
         <Wrapper>
           <Title>Login to your account</Title>
           <Form>
-            <Input placeholder='Email' onChange={(e) => setUserName(e.target.value)} />
+            <Input placeholder='Email' onChange={(e) => setUsername(e.target.value)} />
             <Input placeholder='Password' onChange={(e) => setPassword(e.target.value)} type="password" />
 
             <Button onClick={handleClick}>Login</Button>

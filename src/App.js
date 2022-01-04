@@ -1,8 +1,5 @@
 import React from 'react'
-
 import { Link, Route, BrowserRouter as Router, Routes, Navigate } from 'react-router-dom'
-
-
 import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -10,9 +7,10 @@ import Home from './pages/Home'
 import ProductList from './pages/ProductList';
 import SingleProduct from './pages/SingleProduct';
 import SuccessPayment from './pages/SuccessPayment';
+import { useSelector } from 'react-redux';
 
 const App = () => {
-  const user = false;
+  const user = useSelector(state => state.userSlice.currentUser);
 
   return (
     <Router>
