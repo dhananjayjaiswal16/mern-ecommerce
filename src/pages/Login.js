@@ -86,13 +86,13 @@ const ErrorMsg = styled.div`
 `
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.userSlice);
   const handleClick = (e) => {
     e.preventDefault();
-    login(dispatch, { username, password });
+    login(dispatch, { userName, password });
   }
   return (
     <>
@@ -103,7 +103,7 @@ const Login = () => {
           <Title>Login to your account</Title>
           {error && <ErrorMsg>Something went Wrong!!</ErrorMsg>}
           <Form>
-            <Input placeholder='Email' onChange={(e) => setUsername(e.target.value)} />
+            <Input placeholder='Email' onChange={(e) => setUserName(e.target.value)} />
             <Input placeholder='Password' type='password' onChange={(e) => setPassword(e.target.value)} />
 
             <Button disabled={isFetching} onClick={handleClick}>Login</Button>
