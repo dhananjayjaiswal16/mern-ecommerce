@@ -55,19 +55,19 @@ const Button = styled.button`
 
 const Category = ({ category }) => {
 
-    return (
-        <Container>
+  return (
+    <Container>
 
-            <Image src={category.img} />
-            <InfoContainer>
-                <Title>{category.title}</Title>
-                <Link to={`/products/${category.cat}`}>
-                    <Button>Shop Now</Button>
-                </Link>
-            </InfoContainer>
+      <Image src={category.img} />
+      <InfoContainer>
+        <Title>{category.title}</Title>
+        <Link to={`/products/${category.cat}`}>
+          <Button>Shop Now</Button>
+        </Link>
+      </InfoContainer>
 
-        </Container>
-    )
+    </Container>
+  )
 }
 
 export default Category;
