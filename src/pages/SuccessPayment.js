@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { userRequest } from '../requestMethod';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Success = (props) => {
   const location = useLocation();
@@ -11,6 +11,11 @@ const Success = (props) => {
   const cart = location?.state?.products;
   const currentUser = useSelector((state) => state?.userSlice?.currentUser?.user);
   const [orderId, setOrderId] = useState(null);
+  const navigate = useNavigate();
+
+  const redirectToHome = () => {
+    navigate('/');
+  }
 
   useEffect(() => {
     const createOrder = async () => {
@@ -46,7 +51,7 @@ const Success = (props) => {
       {orderId
         ? `Order has been created successfully. Your order number is ${orderId}`
         : `Successfull. Your order is being prepared...`}
-      <Link to='/' style={{ padding: 10, marginTop: 20, textDecoration: 'none', color: '#17e15f', border: 'solid 1px #17e15f' }}>Go to Homepage</Link>
+      <button onClick={redirectToHome} style={{ padding: 10, marginTop: 20, textDecoration: 'none', color: '#000', border: 'solid 1px #000', cursor: 'pointer' }}>Go to Homepage</button>
     </div>
   );
 };
