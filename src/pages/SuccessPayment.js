@@ -2,21 +2,20 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { userRequest } from '../requestMethod';
+import { Link } from 'react-router-dom';
 
 const Success = (props) => {
   const location = useLocation();
   //in Cart.jsx I sent data and cart. Please check that page for the changes.(in video it's only data)
   const data = location?.state?.stripeData;
   const cart = location?.state?.products;
-  console.log("data in success", data);
-  console.log("cart in success", cart);
-  const currentUser = useSelector((state) => state?.user?.currentUser);
+  const currentUser = useSelector((state) => state?.userSlice?.currentUser?.user);
   const [orderId, setOrderId] = useState(null);
 
   useEffect(() => {
     const createOrder = async () => {
       try {
-        const res = await userRequest.post("/orders", {
+        const res = await userRequest.post("order", {
           userId: currentUser._id,
           products: cart.products.map((item) => ({
             productId: item._id,
@@ -25,8 +24,11 @@ const Success = (props) => {
           amount: cart.total,
           address: data.billing_details.address,
         });
+        console.log("res.data order in successPage", res.data);
         setOrderId(res.data._id);
-      } catch { }
+      } catch (err) {
+        console.log("ERROR While creating order with msg: ", err.msg);
+      }
     };
     data && createOrder();
   }, [cart, data, currentUser]);
@@ -44,7 +46,7 @@ const Success = (props) => {
       {orderId
         ? `Order has been created successfully. Your order number is ${orderId}`
         : `Successfull. Your order is being prepared...`}
-      <button style={{ padding: 10, marginTop: 20 }}>Go to Homepage</button>
+      <Link to='/' style={{ padding: 10, marginTop: 20, textDecoration: 'none', color: '#17e15f', border: 'solid 1px #17e15f' }}>Go to Homepage</Link>
     </div>
   );
 };
