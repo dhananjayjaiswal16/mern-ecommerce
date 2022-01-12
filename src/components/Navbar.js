@@ -85,6 +85,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { quantity } = useSelector(state => state.cartSlice)
+  const user = useSelector(state => state.userSlice.currentUser)
   // console.log(quantity);
   const handleLogout = () => {
     localStorage.clear();
@@ -106,6 +107,16 @@ const Navbar = () => {
           <Logo>DJ.</Logo>
         </Center>
         <Right>
+          {!user && (
+            <>
+              <Link to='/login' style={{ textDecoration: 'none', color: 'inherit' }}>
+                <MenuItem>LOGIN</MenuItem>
+              </Link>
+              <Link to='/register' style={{ textDecoration: 'none', color: 'inherit' }}>
+                <MenuItem>REGISTER</MenuItem>
+              </Link>
+            </>
+          )}
           <Link to='/cart' style={{ textDecoration: 'none', color: 'inherit' }}>
             <CartIcon>
               <Quantity>{quantity}</Quantity>
@@ -117,7 +128,7 @@ const Navbar = () => {
           {/* </Link> */}
         </Right>
       </Wrapper>
-    </Container>
+    </Container >
   )
 }
 
