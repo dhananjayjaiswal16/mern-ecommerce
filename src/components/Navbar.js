@@ -89,7 +89,6 @@ const Navbar = () => {
       <Wrapper>
 
         <Left>
-          <Language>FR</Language>
           <SearchBar>
             <i className="fas fa-search"></i>
             <Input placeholder='Search'></Input>
@@ -99,17 +98,14 @@ const Navbar = () => {
           <Logo>DJ.</Logo>
         </Center>
         <Right>
-          <Link to='/login' style={{ textDecoration: 'none', color: 'inherit' }}>
-            <MenuItem>LOGIN</MenuItem>
-          </Link>
-          <Link to='/register' style={{ textDecoration: 'none', color: 'inherit' }}>
-            <MenuItem>REGISTER</MenuItem>
-          </Link>
           <Link to='/cart' style={{ textDecoration: 'none', color: 'inherit' }}>
             <CartIcon>
               <Quantity>{quantity}</Quantity>
               <i className="fas fa-shopping-cart" style={{ color: '#fff' }}></i>
             </CartIcon>
+          </Link>
+          <Link to='/login' style={{ textDecoration: 'none', color: 'inherit' }}>
+            <MenuItem><i style={{ fontSize: '18px' }} className="fas fa-sign-out-alt"></i></MenuItem>
           </Link>
         </Right>
       </Wrapper>
