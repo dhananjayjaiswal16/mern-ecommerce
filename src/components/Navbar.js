@@ -123,12 +123,10 @@ const Navbar = () => {
               <i className="fas fa-shopping-cart" style={{ color: '#fff' }}></i>
             </CartIcon>
           </Link>
-          {/* <Link to='/login' onClick={handleLogout} style={{ textDecoration: 'none', color: 'inherit' }}> */}
-          <MenuItem onClick={handleLogout}><i style={{ fontSize: '18px' }} className="fas fa-sign-out-alt"></i></MenuItem>
-          {/* </Link> */}
+          {user && <MenuItem onClick={handleLogout}><i style={{ fontSize: '18px' }} className="fas fa-sign-out-alt"></i></MenuItem>}
         </Right>
       </Wrapper>
-    </Container >
+    </Container>
   )
 }
 
