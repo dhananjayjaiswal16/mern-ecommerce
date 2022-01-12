@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { mobile } from '../responsive';
 import Announcement from '../components/Announcement';
 import Navbar from '../components/Navbar';
@@ -7,7 +8,7 @@ import { login } from '../redux/services/api';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Container = styled.div`
-    height: calc(100vh - 88px);
+    height: calc(100vh - 35px);
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -71,7 +72,7 @@ const LinkContainer = styled.div`
     margin-top: 8px;
 `
 
-const Link = styled.a`
+const BottomLink = styled.a`
   margin: 0px 5px;
   font-size: 12px;
   text-decoration: underline;
@@ -97,11 +98,9 @@ const Login = () => {
   return (
     <>
       <Announcement />
-      <Navbar />
       <Container>
         <Wrapper>
           <Title>Login to your account</Title>
-          {error && <ErrorMsg>Something went Wrong!!</ErrorMsg>}
           <Form>
             <Input placeholder='Email' onChange={(e) => setUsername(e.target.value)} />
             <Input placeholder='Password' type='password' onChange={(e) => setPassword(e.target.value)} />
@@ -110,8 +109,8 @@ const Login = () => {
           </Form>
 
           <LinkContainer>
-            <Link side='left'>Forgot Password?</Link>
-            <Link side='right'>Don't have an Account?</Link>
+            <BottomLink side='left'>Forgot Password?</BottomLink>
+            <BottomLink side='right'><Link to='/register' style={{ color: 'inherit' }}>Don't have an Account?</Link></BottomLink>
           </LinkContainer>
         </Wrapper>
       </Container>

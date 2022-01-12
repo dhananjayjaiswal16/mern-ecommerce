@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { mobile } from '../responsive';
 import Announcement from '../components/Announcement';
 import Navbar from '../components/Navbar';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
-    height: calc(100vh - 88px);
+    height: calc(100vh - 35px);
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -65,31 +66,45 @@ const Button = styled.button`
     }
 `
 
+const LinkContainer = styled.div`
+    text-align: right;
+    margin-top: 8px;
+`
+
+const BottomLink = styled.a`
+  margin: 0px 5px;
+  font-size: 12px;
+  text-align: right;
+  text-decoration: underline;
+  cursor: pointer;
+  width: 50%;
+`;
+
 const Register = () => {
-    return (
-        <>
-            <Announcement />
-            <Navbar />
-            <Container>
-
-
-                <Wrapper>
-                    <Title>Create An Account</Title>
-                    <Form>
-                        <Input placeholder='First Name' />
-                        <Input placeholder='Last Name' />
-                        <Input placeholder='Email' />
-                        <Input placeholder='Password' />
-                        <Input placeholder='Re-enter Password' />
-                        <Agreement>
-                            By creating an account, I agree to share my personal info
-                    </Agreement>
-                        <Button>Create</Button>
-                    </Form>
-                </Wrapper>
-            </Container>
-        </>
-    )
+  return (
+    <>
+      <Announcement />
+      <Container>
+        <Wrapper>
+          <Title>Create An Account</Title>
+          <Form>
+            <Input placeholder='First Name' />
+            <Input placeholder='Last Name' />
+            <Input placeholder='Email' />
+            <Input placeholder='Password' />
+            <Input placeholder='Re-enter Password' />
+            <Agreement>
+              By creating an account, I agree to share my personal info
+            </Agreement>
+            <Button>Create</Button>
+            <LinkContainer>
+              <BottomLink><Link to='/login' style={{ color: 'inherit' }}>Already have an Account?</Link></BottomLink>
+            </LinkContainer>
+          </Form>
+        </Wrapper>
+      </Container>
+    </>
+  )
 }
 
 export default Register;
