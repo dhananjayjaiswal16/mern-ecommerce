@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
 import { mobile } from '../responsive';
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../redux/userSlice'
 
 const Container = styled.div`
     
@@ -81,8 +82,15 @@ const Quantity = styled.span`
 `
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { quantity } = useSelector(state => state.cartSlice)
   // console.log(quantity);
+  const handleLogout = () => {
+    localStorage.clear();
+    dispatch(logout());
+    navigate('/login');
+  }
 
   return (
     <Container>
@@ -104,9 +112,9 @@ const Navbar = () => {
               <i className="fas fa-shopping-cart" style={{ color: '#fff' }}></i>
             </CartIcon>
           </Link>
-          <Link to='/login' style={{ textDecoration: 'none', color: 'inherit' }}>
-            <MenuItem><i style={{ fontSize: '18px' }} className="fas fa-sign-out-alt"></i></MenuItem>
-          </Link>
+          {/* <Link to='/login' onClick={handleLogout} style={{ textDecoration: 'none', color: 'inherit' }}> */}
+          <MenuItem onClick={handleLogout}><i style={{ fontSize: '18px' }} className="fas fa-sign-out-alt"></i></MenuItem>
+          {/* </Link> */}
         </Right>
       </Wrapper>
     </Container>
