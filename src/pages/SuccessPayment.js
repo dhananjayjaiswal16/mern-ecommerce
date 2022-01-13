@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { userRequest } from '../requestMethod';
 import { useNavigate } from 'react-router-dom';
+import { clearCart } from '../redux/cartSlice';
 
 const Success = (props) => {
   const location = useLocation();
@@ -11,9 +12,11 @@ const Success = (props) => {
   const cart = location?.state?.products;
   const currentUser = useSelector((state) => state?.userSlice?.currentUser?.user);
   const [orderId, setOrderId] = useState(null);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const redirectToHome = () => {
+    dispatch(clearCart());
     navigate('/');
   }
 

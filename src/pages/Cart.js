@@ -213,10 +213,6 @@ const Cart = () => {
         });
         console.log("response.data", response.data, "cart", cart);
         navigate('/success', { state: { stripeData: response.data, products: cart } });
-        // navigate('/success', {
-        //   stripeData: response.data,
-        //   products: cart,
-        // });
       } catch (error) {
         console.error("in axios.post()", error);
       }
