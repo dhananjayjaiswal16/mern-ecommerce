@@ -209,7 +209,7 @@ const Cart = () => {
       try {
         const response = await publicRequest.post('/checkout/payment', {
           tokenId: stripeToken.id,
-          amount: 1000000,
+          amount: cart.total * 100,
         });
         console.log("response.data", response.data, "cart", cart);
         navigate('/success', { state: { stripeData: response.data, products: cart } });
