@@ -141,96 +141,96 @@ const Button = styled.button`
 
 const SingleProduct = () => {
 
-    const location = useLocation();
-    const id = location.pathname.split('/')[2];
+  const location = useLocation();
+  const id = location.pathname.split('/')[2];
 
 
-    const [product, setProduct] = useState(null);
-    const [quantity, setQuantity] = useState(1);
-    const [color, setColor] = useState(null);
-    const [size, setSize] = useState(null);
+  const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState(null);
+  const [size, setSize] = useState(null);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        const getProduct = async () => {
-            try {
-                const res = await publicRequest.get(`/product/find/${id}`)
-                setProduct(res.data);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        getProduct();
-    }, [id]);
-
-    const handleClick = () => {
-        dispatch(
-            addProduct({
-                ...product,
-                quantity,
-                color,
-                size
-            })
-        )
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get(`/product/find/${id}`)
+        setProduct(res.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
+    getProduct();
+  }, [id]);
 
-
-
-    // console.log(product);
-    // console.log(color, size);
-    return (
-        <Container>
-            <Announcement />
-            <Navbar />
-
-            <ProductWrapper>
-                <ImageContainer>
-                    <Image src={product?.img} />
-                </ImageContainer>
-                <InfoContainer>
-                    <Title>{product?.title}</Title>
-                    <Description>{product?.desc}</Description>
-                    <Price>${product?.price}</Price>
-                    <FilterContainer>
-                        {/* For Color */}
-                        <Filter>
-                            <FilterTitle>Colors</FilterTitle>
-                            {product?.color?.map((colour) =>
-                                <FilterColor color={colour} key={colour}
-                                    onClick={() => setColor(colour)} />
-                            )}
-                        </Filter>
-                        {/* For size */}
-                        <Filter>
-                            <FilterTitle>Size</FilterTitle>
-                            <FilterSize onChange={(e) => setSize(e.target.value)}>
-                                {product?.size?.map((size) =>
-                                    <FilterSizeOption key={size}>
-                                        {size}
-                                    </FilterSizeOption>
-
-                                )}
-
-                            </FilterSize>
-                        </Filter>
-                    </FilterContainer>
-                    <AddContainer>
-                        <QuantityContainer>
-                            <Remove onClick={() => quantity > 1 && setQuantity(quantity - 1)}><i className="fas fa-minus" /></Remove>
-                            <Quantity>{quantity}</Quantity>
-                            <Add onClick={() => setQuantity(quantity + 1)}><i className="fas fa-plus" /></Add>
-                        </QuantityContainer>
-
-                        <Button onClick={handleClick}>Add to Cart</Button>
-                    </AddContainer>
-                </InfoContainer>
-            </ProductWrapper>
-
-            <Newsletter />
-            <Footer />
-        </Container>
+  const handleClick = () => {
+    dispatch(
+      addProduct({
+        ...product,
+        quantity,
+        color,
+        size
+      })
     )
+  }
+
+
+
+  // console.log(product);
+  // console.log(color, size);
+  return (
+    <Container>
+      <Announcement />
+      <Navbar />
+
+      <ProductWrapper>
+        <ImageContainer>
+          <Image src={product?.img} />
+        </ImageContainer>
+        <InfoContainer>
+          <Title>{product?.title}</Title>
+          <Description>{product?.desc}</Description>
+          <Price>₹ {product?.price}</Price>
+          <FilterContainer>
+            {/* For Color */}
+            <Filter>
+              <FilterTitle>Colors</FilterTitle>
+              {product?.color?.map((colour) =>
+                <FilterColor color={colour} key={colour}
+                  onClick={() => setColor(colour)} />
+              )}
+            </Filter>
+            {/* For size */}
+            <Filter>
+              <FilterTitle>Size</FilterTitle>
+              <FilterSize onChange={(e) => setSize(e.target.value)}>
+                {product?.size?.map((size) =>
+                  <FilterSizeOption key={size}>
+                    {size}
+                  </FilterSizeOption>
+
+                )}
+
+              </FilterSize>
+            </Filter>
+          </FilterContainer>
+          <AddContainer>
+            <QuantityContainer>
+              <Remove onClick={() => quantity > 1 && setQuantity(quantity - 1)}><i className="fas fa-minus" /></Remove>
+              <Quantity>{quantity}</Quantity>
+              <Add onClick={() => setQuantity(quantity + 1)}><i className="fas fa-plus" /></Add>
+            </QuantityContainer>
+
+            <Button onClick={handleClick}>Add to Cart</Button>
+          </AddContainer>
+        </InfoContainer>
+      </ProductWrapper>
+
+      <Newsletter />
+      <Footer />
+    </Container>
+  )
 
 
 }

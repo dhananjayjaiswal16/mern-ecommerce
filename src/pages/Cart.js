@@ -262,7 +262,7 @@ const Cart = () => {
                   <ProductAmount>{product.quantity}</ProductAmount>
                   <Add><i className="fas fa-plus" /></Add>
                 </ProductAmountContainer>
-                <ProductPrice>$ {product.price * product.quantity}</ProductPrice>
+                <ProductPrice>₹ {product.price * product.quantity}</ProductPrice>
               </PriceDetail>
             </Product>)}
           </ProductInfo>
@@ -270,19 +270,19 @@ const Cart = () => {
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryInfo>
               <SummaryText>Subtotal</SummaryText>
-              <SummaryPrice>$ {cart.total}</SummaryPrice>
+              <SummaryPrice>₹ {cart.total}</SummaryPrice>
             </SummaryInfo>
             <SummaryInfo>
               <SummaryText>Estimated Shipping</SummaryText>
-              <SummaryPrice>$ 5</SummaryPrice>
+              <SummaryPrice>₹ 50</SummaryPrice>
             </SummaryInfo>
             <SummaryInfo>
               <SummaryText>Discount</SummaryText>
-              <SummaryPrice>-$ 5</SummaryPrice>
+              <SummaryPrice>-₹ 50</SummaryPrice>
             </SummaryInfo>
             <SummaryInfo total='total'>
               <SummaryText>Payable Amount</SummaryText>
-              <SummaryPrice>$ {cart.total}</SummaryPrice>
+              <SummaryPrice>₹ {cart.total}</SummaryPrice>
             </SummaryInfo>
 
             <StripeCheckout name='DJ store'

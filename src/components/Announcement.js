@@ -14,11 +14,11 @@ const Container = styled.div`
 `
 
 const Announcement = () => {
-    return (
-        <Container>
-            Exclusive offer!! Free Delivery on orders above $60
-        </Container>
-    )
+  return (
+    <Container>
+      Exclusive offer!! Free Delivery on orders above ₹3000
+    </Container>
+  )
 }
 
 export default Announcement;
