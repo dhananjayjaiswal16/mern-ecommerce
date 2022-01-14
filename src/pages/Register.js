@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import { mobile } from '../responsive';
 import Announcement from '../components/Announcement';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const Container = styled.div`
     height: calc(100vh - 35px);
@@ -81,6 +82,19 @@ const BottomLink = styled.a`
 `;
 
 const Register = () => {
+  const [inputs, setInputs] = useState({});
+  const dispatch = useDispatch();
+
+  const handleChange = (event) => {
+    setInputs(prev => {
+      return { ...prev, [event.target.name]: event.target.value }
+    })
+  }
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log(inputs, "inputs in register");
+    // register(dispatch, inputs);
+  }
   return (
     <>
       <Announcement />
@@ -88,15 +102,14 @@ const Register = () => {
         <Wrapper>
           <Title>Create An Account</Title>
           <Form>
-            <Input placeholder='First Name' />
-            <Input placeholder='Last Name' />
-            <Input placeholder='Email' />
-            <Input placeholder='Password' />
-            <Input placeholder='Re-enter Password' />
+            <Input placeholder='Name' onChange={handleChange} name="username" />
+            <Input placeholder='Email' onChange={handleChange} name="email" />
+            <Input placeholder='Password' onChange={handleChange} name="password" />
+            <Input placeholder='Re-enter Password' onChange={handleChange} name="confirmPassword" />
             <Agreement>
               By creating an account, I agree to share my personal info
             </Agreement>
-            <Button>Create</Button>
+            <Button onClick={handleClick}>Create</Button>
             <LinkContainer>
               <BottomLink><Link to='/login' style={{ color: 'inherit' }}>Already have an Account?</Link></BottomLink>
             </LinkContainer>
