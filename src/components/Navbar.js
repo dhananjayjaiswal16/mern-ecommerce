@@ -88,7 +88,7 @@ const Navbar = () => {
   const user = useSelector(state => state.userSlice.currentUser)
   // console.log(quantity);
   const handleLogout = () => {
-    localStorage.clear();
+    window.localStorage.clear();
     dispatch(logout());
     navigate('/login');
   }
