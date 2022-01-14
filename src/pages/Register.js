@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { mobile } from '../responsive';
 import Announcement from '../components/Announcement';
 import Navbar from '../components/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { register } from '../redux/services/api'
 
 const Container = styled.div`
     height: calc(100vh - 35px);
@@ -84,6 +85,7 @@ const BottomLink = styled.a`
 const Register = () => {
   const [inputs, setInputs] = useState({});
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setInputs(prev => {
@@ -93,7 +95,8 @@ const Register = () => {
   const handleClick = (e) => {
     e.preventDefault();
     console.log(inputs, "inputs in register");
-    // register(dispatch, inputs);
+    register(dispatch, inputs);
+    navigate('/login', { state: { fromRegister: 'fromRegister' } });
   }
   return (
     <>

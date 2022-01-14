@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { mobile } from '../responsive';
 import Announcement from '../components/Announcement';
 import Navbar from '../components/Navbar';
@@ -90,6 +90,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const location = useLocation();
+  const fromRegister = location?.state?.fromRegister;
+  console.log("fromRegister", fromRegister);
   const { isFetching, error } = useSelector((state) => state.userSlice);
   const handleClick = (e) => {
     e.preventDefault();
@@ -100,6 +103,7 @@ const Login = () => {
       <Announcement />
       <Container>
         <Wrapper>
+          {fromRegister && <div style={{ marginBottom: '10px', fontSize: '16px', color: '#20B2AA' }} >You have been successfully registered, <br />Please Login to continue</div>}
           <Title>Login to your account</Title>
           <Form>
             <Input placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
