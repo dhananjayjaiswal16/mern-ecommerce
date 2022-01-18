@@ -18,14 +18,14 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        <Route exact path='/' element={user ? <Home /> : <Navigate to="/login" />} />
         <Route exact path='/login'
           element={!user ? <Login /> : <Navigate to="/" />} />
         <Route exact path='/register' element={!user ? <Register /> : <Navigate to="/" />} />
-        <Route exact path='/products/:category' element={<ProductList />} />
-        <Route exact path='/product/:id' element={<SingleProduct />} />
-        <Route exact path='/cart' element={<Cart />} />
-        <Route exact path='/success' element={<SuccessPayment />} />
+        <Route exact path='/products/:category' element={user ? <ProductList /> : <Navigate to="/login" />} />
+        <Route exact path='/product/:id' element={user ? <SingleProduct /> : <Navigate to="/login" />} />
+        <Route exact path='/cart' element={user ? <Cart token={user?.token} /> : <Navigate to="/login" />} />
+        <Route exact path='/success' element={user ? <SuccessPayment /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
   )

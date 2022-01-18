@@ -195,7 +195,10 @@ const Hr = styled.hr`
     margin: 20px 0;
 `
 
-const Cart = () => {
+const Cart = ({ token }) => {
+  if (token == '' || token == undefined || token == null) {
+    window.location.reload();
+  }
   const cart = useSelector(state => state.cartSlice);
   const [stripeToken, setStripeToken] = useState(null);
   const dispatch = useDispatch();
