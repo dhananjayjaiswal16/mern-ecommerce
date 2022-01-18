@@ -104,7 +104,9 @@ const Navbar = () => {
           </SearchBar>
         </Left>
         <Center>
-          <Logo>DJ.</Logo>
+          <Logo>
+            <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>DJ.</Link>
+          </Logo>
         </Center>
         <Right>
           {!user && (

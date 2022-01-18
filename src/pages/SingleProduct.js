@@ -175,10 +175,6 @@ const SingleProduct = () => {
     )
   }
 
-
-
-  // console.log(product);
-  // console.log(color, size);
   return (
     <Container>
       <Announcement />
