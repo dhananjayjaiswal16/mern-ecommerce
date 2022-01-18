@@ -4,12 +4,13 @@ import Announcement from '../components/Announcement'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { mobile } from '../responsive';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import StripeCheckout from 'react-stripe-checkout';
 import { publicRequest, userRequest } from '../requestMethod'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios'
+import { clearCart } from '../redux/cartSlice'
 
 
 
@@ -40,8 +41,7 @@ const TopButton = styled.button`
     cursor: pointer;
     font-weight: 600;
     padding: 10px;
-
-    background-color: ${props => props.type === 'checkout' ? '#000' : 'transparent'};
+    background-color: ${props => props.type === 'checkout' ? '#f73636' : 'transparent'};
     color: ${props => props.type === 'checkout' && '#fff'};
     border: ${props => props.type === 'checkout' && 'none'};
 
@@ -120,7 +120,7 @@ const ProductAmountContainer = styled.div`
 `
 
 const ProductAmount = styled.span`
-    font-size: 25px;
+    font-size: 22px;
     margin: 0 8px;
     border: 1px solid #00a7a7;
     padding: 4px 8px;
@@ -130,8 +130,9 @@ const ProductAmount = styled.span`
     
 `
 
-const Remove = styled.span`
+const TrashIcon = styled.span`
     cursor: pointer;
+    margin-left: 20px;
 `
 
 const Add = styled.span`
@@ -197,6 +198,7 @@ const Hr = styled.hr`
 const Cart = () => {
   const cart = useSelector(state => state.cartSlice);
   const [stripeToken, setStripeToken] = useState(null);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onToken = (token) => {
@@ -221,6 +223,10 @@ const Cart = () => {
 
   }, [stripeToken, navigate, cart.total]);
 
+  const handleCartClear = () => {
+    dispatch(clearCart());
+  }
+
 
   return (
     <Container>
@@ -229,12 +235,12 @@ const Cart = () => {
       <Wrapper>
         <Title>YOUR CART</Title>
         <Top>
-          <TopButton>Continue Shopping <i className="fas fa-shopping-bag" style={{ marginLeft: '8px', fontSize: '16px' }} /></TopButton>
+          <TopButton> <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>Continue Shopping <i className="fas fa-shopping-bag" style={{ marginLeft: '8px', fontSize: '16px' }} /></Link></TopButton>
           <TopTexts>
             <TopText>Shopping Bag (3)</TopText>
             <TopText>Your wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type='checkout'>Checkout <i className="fas fa-receipt" style={{ marginLeft: '8px', fontSize: '16px' }} /></TopButton>
+          <TopButton type='checkout' onClick={handleCartClear}>CLEAR CART <i className="far fa-trash-alt" style={{ marginLeft: '8px', fontSize: '16px' }} /></TopButton>
         </Top>
         <Bottom>
           <ProductInfo>
@@ -254,9 +260,7 @@ const Cart = () => {
               </ProductDetail>
               <PriceDetail>
                 <ProductAmountContainer>
-                  <Remove><i className="fas fa-minus" /></Remove>
-                  <ProductAmount>{product.quantity}</ProductAmount>
-                  <Add><i className="fas fa-plus" /></Add>
+                  <span style={{ fontSize: '22px' }}>Quantity: </span> <ProductAmount>{product.quantity}</ProductAmount>
                 </ProductAmountContainer>
                 <ProductPrice>₹ {product.price * product.quantity}</ProductPrice>
               </PriceDetail>
