@@ -45,7 +45,7 @@ const Center = styled.div`
 `
 const Logo = styled.div`
     font-weight: 700;
-    font-size: 25px;
+    font-size: 30px;
 `
 const Right = styled.div`
     flex: 1;
@@ -98,10 +98,10 @@ const Navbar = () => {
       <Wrapper>
 
         <Left>
-          <SearchBar>
+          {/* <SearchBar>
             <i className="fas fa-search"></i>
             <Input placeholder='Search'></Input>
-          </SearchBar>
+          </SearchBar> */}
         </Left>
         <Center>
           <Logo>

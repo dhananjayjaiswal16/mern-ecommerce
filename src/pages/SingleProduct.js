@@ -137,8 +137,6 @@ const Button = styled.button`
     }
 `
 
-
-
 const SingleProduct = () => {
 
   const location = useLocation();
@@ -222,8 +220,6 @@ const SingleProduct = () => {
           </AddContainer>
         </InfoContainer>
       </ProductWrapper>
-
-      <Newsletter />
       <Footer />
     </Container>
   )
