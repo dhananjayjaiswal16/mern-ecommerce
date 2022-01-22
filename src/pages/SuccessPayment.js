@@ -32,7 +32,7 @@ const Success = (props) => {
           amount: cart.total,
           address: data.billing_details.address,
         });
-        console.log("res.data order in successPage", res.data);
+        // console.log("res.data order in successPage", res.data);
         setOrderId(res.data._id);
       } catch (err) {
         console.log("ERROR While creating order with msg: ", err.msg);

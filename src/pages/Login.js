@@ -92,7 +92,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const fromRegister = location?.state?.fromRegister;
-  console.log("fromRegister", fromRegister);
+  // console.log("fromRegister", fromRegister);
   const { isFetching, error } = useSelector((state) => state.userSlice);
   const handleClick = (e) => {
     e.preventDefault();

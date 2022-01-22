@@ -156,7 +156,7 @@ const SingleProduct = () => {
         const res = await publicRequest.get(`/product/find/${id}`)
         setProduct(res.data);
       } catch (error) {
-        console.log(error);
+        console.log("Error in getting product", error.message);
       }
     }
     getProduct();

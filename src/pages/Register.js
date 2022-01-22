@@ -94,7 +94,6 @@ const Register = () => {
   }
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(inputs, "inputs in register");
     register(dispatch, inputs);
     navigate('/login', { state: { fromRegister: 'fromRegister' } });
   }

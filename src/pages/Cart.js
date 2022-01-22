@@ -216,7 +216,7 @@ const Cart = ({ token }) => {
           tokenId: stripeToken.id,
           amount: cart.total * 100,
         });
-        console.log("response.data", response.data, "cart", cart);
+        // console.log("response.data", response.data, "cart", cart);
         navigate('/success', { state: { stripeData: response.data, products: cart } });
       } catch (error) {
         console.error("in axios.post()", error);
