@@ -106,8 +106,8 @@ const Register = () => {
           <Form>
             <Input placeholder='Name' onChange={handleChange} name="username" />
             <Input placeholder='Email' onChange={handleChange} name="email" />
-            <Input placeholder='Password' onChange={handleChange} name="password" />
-            <Input placeholder='Re-enter Password' onChange={handleChange} name="confirmPassword" />
+            <Input placeholder='Password' onChange={handleChange} name="password" type='password' />
+            <Input placeholder='Re-enter Password' onChange={handleChange} name="confirmPassword" type='password' />
             <Agreement>
               By creating an account, I agree to share my personal info
             </Agreement>
