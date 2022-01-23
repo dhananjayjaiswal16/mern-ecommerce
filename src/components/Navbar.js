@@ -98,10 +98,7 @@ const Navbar = () => {
       <Wrapper>
 
         <Left>
-          {/* <SearchBar>
-            <i className="fas fa-search"></i>
-            <Input placeholder='Search'></Input>
-          </SearchBar> */}
+          <MenuItem style={{ fontSize: '18px', fontWeight: '600' }}>{user.user.username}</MenuItem>
         </Left>
         <Center>
           <Logo>
@@ -109,23 +106,14 @@ const Navbar = () => {
           </Logo>
         </Center>
         <Right>
-          {!user && (
-            <>
-              <Link to='/login' style={{ textDecoration: 'none', color: 'inherit' }}>
-                <MenuItem>LOGIN</MenuItem>
-              </Link>
-              <Link to='/register' style={{ textDecoration: 'none', color: 'inherit' }}>
-                <MenuItem>REGISTER</MenuItem>
-              </Link>
-            </>
-          )}
+
           <Link to='/cart' style={{ textDecoration: 'none', color: 'inherit' }}>
             <CartIcon>
               <Quantity>{quantity}</Quantity>
               <i className="fas fa-shopping-cart" style={{ color: '#fff' }}></i>
             </CartIcon>
           </Link>
-          {user && <MenuItem onClick={handleLogout}><i style={{ fontSize: '18px' }} className="fas fa-sign-out-alt"></i></MenuItem>}
+          <MenuItem onClick={handleLogout}><i style={{ fontSize: '18px' }} className="fas fa-sign-out-alt"></i></MenuItem>
         </Right>
       </Wrapper>
     </Container>
