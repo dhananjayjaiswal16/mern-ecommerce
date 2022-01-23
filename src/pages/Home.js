@@ -8,17 +8,21 @@ import Products from '../components/Products';
 import Slider from '../components/Slider';
 
 const Home = () => {
-    return (
-        <>
-            <Announcement />
-            <Navbar />
-            <Slider />
-            <Categories />
-            <Products />
-            <Newsletter />
-            <Footer />
-        </>
-    )
+  const token = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.userSlice)?.currentUser?.token;
+  if (token == undefined || token == null) {
+    window.location.reload();
+  }
+  return (
+    <>
+      <Announcement />
+      <Navbar />
+      <Slider />
+      <Categories />
+      <Products />
+      <Newsletter />
+      <Footer />
+    </>
+  )
 }
 
 export default Home;
